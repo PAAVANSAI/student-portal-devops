@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Student Portal — view enrolled students, courses, and IDs." />
+    <title>Student Portal</title>
+    <style>
+        /* ── Reset & base ─────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ── Header ───────────────────────────────────────── */
+        header {
+            width: 100%;
+            padding: 2.5rem 1rem 1.5rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.03em;
+        }
+
+        header p.subtitle {
+            margin-top: 0.5rem;
+            font-size: 1.05rem;
+            color: #a0b0c0;
+        }
+
+        /* ── Main container ───────────────────────────────── */
+        main {
+            width: 90%;
+            max-width: 860px;
+            margin: 2.5rem auto;
+            padding: 2rem 2.5rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+            animation: fadeUp 0.6s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        main h2 {
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            color: #cfd8e3;
+        }
+
+        /* ── Table ─────────────────────────────────────────── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #7ecafc;
+            border-bottom: 2px solid rgba(126, 202, 252, 0.25);
+        }
+
+        tbody tr {
+            transition: background 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        tbody td {
+            padding: 0.85rem 1rem;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* ── Footer ───────────────────────────────────────── */
+        footer {
+            margin-top: auto;
+            padding: 1.5rem 1rem;
+            font-size: 0.82rem;
+            color: #5a6a7a;
+            text-align: center;
+        }
+
+        /* ── Responsive tweaks ────────────────────────────── */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.7rem;
+            }
+
+            main {
+                padding: 1.2rem 1rem;
+            }
+
+            thead th,
+            tbody td {
+                padding: 0.6rem 0.5rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Student Portal</h1>
+        <p class="subtitle">Welcome! Below is the current list of enrolled students.</p>
+    </header>
+
+    <main>
+        <h2>Enrolled Students</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Course</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.course }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        &copy; 2026 Student Portal &mdash; DevOps CI/CD Demo
+    </footer>
+</body>
+</html>
